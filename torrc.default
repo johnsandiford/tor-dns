@@ -18,9 +18,9 @@
 #SOCKSPort 9050 # Default: Bind to localhost:9050 for local connections.
 #SOCKSPort 192.168.0.1:9100 # Bind to this address:port too.
 
-## Configure to use DNS, and only US ExitNodes
+## Configure to use only US ExitNodes
 
-DNSPort 53
+SOCKSPort 9050
 ExitNodes {us}
 StrictNodes 1
 
