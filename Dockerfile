@@ -16,9 +16,8 @@ RUN apk update && apk add \
 	--update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
 	&& rm -rf /var/cache/apk/*
 
-# expose dns port
-EXPOSE 53/udp
-EXPOSE 53/tcp
+# expose socks port
+EXPOSE 9050
 
 # copy in our torrc file
 COPY torrc.default /etc/tor/torrc.default
