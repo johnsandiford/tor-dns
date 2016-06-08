@@ -36,7 +36,8 @@ COPY dns_proxy.conf /tor-dns/dns-tcp-socks-proxy/dns_proxy.conf
 COPY resolv.conf /tor-dns/dns-tcp-socks-proxy/resolv.conf
 
 # run dns-tcp-socks-proxy
-RUN /tor-dns/dns-tcp-socks-proxy/dns_proxy
+WORKDIR /tor-dns/dns-tcp-socks-proxy/
+RUN dns_proxy
 
 # make sure files are owned by tor user
 RUN chown -R tor /etc/tor
