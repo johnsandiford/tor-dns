@@ -21,8 +21,8 @@ RUN apk update && apk add \
 	--update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
 	&& rm -rf /var/cache/apk/*
 
-RUN git clone https://github.com/jtRIPper/dns-tcp-socks-proxy.git \
-	cd dns-tcp-socks-proxy \
+RUN git clone https://github.com/jtRIPper/dns-tcp-socks-proxy.git && \
+	cd dns-tcp-socks-proxy && \
 	make
 
 # expose dns port
