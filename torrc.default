@@ -20,7 +20,7 @@
 
 ## Configure to use only US ExitNodes
 
-SOCKSPort 9050
+SOCKSPort 127.0.0.1:9050
 ExitNodes {us}
 StrictNodes 1
 

@@ -13,14 +13,28 @@ MAINTAINER John Sandiford <john@sandiford.net>
 # Note: Tor is only in testing repo -> http://pkgs.alpinelinux.org/packages?package=emacs&repo=all&arch=x86_64
 RUN apk update && apk add \
 	tor \
+	git \
+	make \
+	gcc \
+	musl-dev \
+	libc-dev \
 	--update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
 	&& rm -rf /var/cache/apk/*
 
-# expose socks port
-EXPOSE 9050
+RUN git clone https://github.com/jtRIPper/dns-tcp-socks-proxy.git \
+	cd dns-tcp-socks-proxy \
+	make
 
-# copy in our torrc file
+# expose dns port
+EXPOSE 53/udp
+
+# copy in our files
 COPY torrc.default /etc/tor/torrc.default
+COPY dns_proxy.conf /root/dns-tcp-socks-proxy/dns_proxy.conf
+COPY resolv.conf /root/dns-tcp-socks-proxy/resolv.conf
+
+# run dns-tcp-socks-proxy
+RUN /root/dns_proxy
 
 # make sure files are owned by tor user
 RUN chown -R tor /etc/tor
