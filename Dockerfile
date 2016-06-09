@@ -21,8 +21,8 @@ RUN apk update && apk add \
 	--update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
 	&& rm -rf /var/cache/apk/*
 
-RUN mkdir /tor-dns
-RUN cd tor-dns && \
+RUN mkdir /tor-dns && \
+	cd tor-dns && \
 	git clone https://github.com/jtRIPper/dns-tcp-socks-proxy.git && \
 	cd dns-tcp-socks-proxy && \
 	make
@@ -39,7 +39,7 @@ COPY resolv.conf /tor-dns/dns-tcp-socks-proxy/resolv.conf
 RUN /tor-dns/dns-tcp-socks-proxy/dns_proxy
 
 # make sure files are owned by tor user
-RUN chown -R tor /etc/tor
+# RUN chown -R tor /etc/tor
 
 USER tor
 
