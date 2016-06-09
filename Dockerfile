@@ -43,5 +43,5 @@ RUN chown -R tor /etc/tor
 
 USER tor
 
-ENTRYPOINT [ "tor" ]
-CMD [ "-f", "/etc/tor/torrc.default" ]
+# ENTRYPOINT [ "tor" ]
+# CMD [ "-f", "/etc/tor/torrc.default" ]
